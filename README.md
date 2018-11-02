@@ -47,12 +47,12 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
           > where conda
       * Find the location where conda.exe is located (ignore the .bat location) so you can add this location to environmental variables (this can be done within Anaconda Prompt).
       ![whereconda](https://user-images.githubusercontent.com/38474936/47879250-5fd36300-dddd-11e8-8107-ceadd63a0ec2.jpg)
-      
       * In this case it is C:\Users\rebec\Anaconda3\Scripts, but **obviously this will be specific to your system, so please edit the path appropriately!** For this example, we need to add both paths:
           *  C:\Users\rebec\Anaconda3
           *  C:\Users\rebec\Anaconda3\Scripts
       * *Add to environment variables*. To do this, type:
           *  >SETX PATH "%PATH%;C:\Users\rebec\Anaconda3;C:\Users\rebec\Anaconda3\Scripts”
+	  ![path](https://user-images.githubusercontent.com/38474936/47886213-06c3f900-ddf6-11e8-85f7-dcf027fe5be0.jpg)
       3. Close Anaconda Prompt
       4. Go to system terminal or command prompt (not Anaconda prompt) and check to be sure that the conda command works.
 	        *  >conda
@@ -70,6 +70,7 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
                * > conda env create -f environment_mac.yml
 
            *  This step will take a few minutes to solve the environment...
+	   ![solvingenv](https://user-images.githubusercontent.com/38474936/47886420-2c9dcd80-ddf7-11e8-8a38-dcf83ae508fe.jpg)
            
      6. When finished, you can continue in command line to run embryoCropUI (below) or switch to an IDE to run screenCrop or embryoCropUI.
 	   * *To continue in command line (for embryoCropUI)*:
@@ -89,6 +90,7 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
   * In **PyCharm**: 
     1.	**File > Open > embryo_crop** 
     2.	*Configure environment*. Go to: **file > settings > project:embryo_crop > project interpreter > add local (select conda) > existing environment >** and select the newly generated conda env from within the Anaconda3 envs folder: **…Anaconda3\envs\embryocrop\python.exe**
+    ![pycharmenv](https://user-images.githubusercontent.com/38474936/47886427-3b848000-ddf7-11e8-9c16-942f3536d664.jpg)
     3.	From here, you should be able to run programs using the PyCharm ‘run’ button (program instructions below). If this doesn’t properly structure the environment, it may crash. If this happens, you can access the terminal window within PyCharm and activate the environment this way:
       * a.	For Windows:
           * > activate embryocrop
@@ -98,26 +100,28 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
          * > python screenCrop.py  or 
          * > python embryoCropUI.py
       * *note that the screenCrop program will need to be modified to work with your file structure!!See instructions below.*
+      ![pycharmterminal](https://user-images.githubusercontent.com/38474936/47886459-7090d280-ddf7-11e8-99c3-fb499942af2c.jpg)
       * d. When finished:
          * > deactivate
 
 2. **Running embryoCropUI.py GUI with Python**
     1.	In PyCharm (or your preferred IDE) double click on the embryoCrop folder and locate the file that says embryoCropUI.py  (DO NOT open embryoCropUI.ui). The code will appear in the workspace. 
     2.	If this is the only file open, go to the top right-hand corner and click the green triangle to start the run. If multiple files are open, right click and select ‘Run embryoCropUI’ to ensure the proper program is run. Alternatively, activate the environment and run from PyCharm terminal, as outlined above.
-
     3.	Once the program has started, the following window will appear: 
+      * ![gui1](https://user-images.githubusercontent.com/38474936/47886470-81414880-ddf7-11e8-94f7-cef002f8f564.jpg)
     4.	Select the “Open” button at the top of the window to load the specific image that you wish to crop. Should you be cropping an image series, with multiple dimensions (i.e. z, time, or channel), simply load the first image in the series within the folder. *Please make sure only images from one image series are present in this folder, otherwise the image series’ will be loaded in tandem.*
-
     5.	Once you have loaded the desired images, you will need to specify the following information:
       a.	Number of Z slices (Z)
       b.	Number of Time points (T)
       c.	Number of Channels (C) 
       d.	The channel that corresponds to DIC or brightfield (first=1, second=2, etc)
      * For example: our imaging protocol was 18 z-steps, imaged for 31 time-points in 3 channels with the DIC channel being the first channel imaged. The window should look like this: 
+     ![gui2](https://user-images.githubusercontent.com/38474936/47886476-8d2d0a80-ddf7-11e8-8e0c-f920ebc05de8.jpg)
     6.	Now that you have your images loaded and specified the image parameters, you must choose what processing you would like to do alongside the embryo cropping. The program gives you the option to perform Drift Correction, Background Subtraction, and Attenuation Correction. Background Subtraction and Attenuation Correction must be done in conjunction with each other. The below image shows an image that will be going through Drift Correction, Background Subtraction, and Attenuation Correction. 
+      * ![gui3](https://user-images.githubusercontent.com/38474936/47886489-a0d87100-ddf7-11e8-9e01-3e951a24dcb2.jpg)
       a.	When selecting Background Subtraction and Attenuation Correction, specify parameters for each to guide the processing. For Background Subtract, define a feature size (odd numbered) that reflects the level of detail you wish to resolve, larger feature size equates to more detail. For Attenuation Correction, you need to input a value from 0-1. This value represents the percent of original intensity that remains at the furthest distance through the object being imaged.
       b.	As shown below, you have even greater options to customize Background subtraction. By selecting Customize, you will be able to define a feature size for different channels.
-	  
+      * ![gui4](https://user-images.githubusercontent.com/38474936/47886497-adf56000-ddf7-11e8-909f-de7eae36df89.jpg)
     7. Next, specify the order in which the images were collected (i.e. channel-z-time (czt), or z-channel-time (zct))
     8. Specify the microns per pixel of the camera being used for the images.
       a. failure to properly define pixel size will result in poor image cropping!!
@@ -137,6 +141,7 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
     
       * **CSV**: The CSV file contains information that will be called on during processing or used to generate the cropped file path. Below is an example .csv file that is compatible with our programs. Formatting your .csv file the same will ensure your data will go through our programs with minimal issues.
         * Rundown of .CSV file contents:
+	![csv](https://user-images.githubusercontent.com/38474936/47886502-b8aff500-ddf7-11e8-9bf4-1451b68fb1d4.jpg)
           * Experiment: arbitrary name given to each experiment (not important for software functionality, but this column needs to be maintained)
           * Experiment Folder Name: name of folder in where specific experiments images are stored. We prefer Date/Time file name, though any name will suffice (do not include spaces or disallowed characters, as the contents of this cell are added to the file path).
           * Post-Scan Folder Name: name of post- scan (10x data) folder. Not important for software functionality, but this column needs to be maintained. You can populate this with ‘empty’. 
@@ -150,12 +155,12 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
             * The path to access the raw data files is referred to in screenCrop.py, based on the information in the CSV file (highlighted in red below). Our data is structured such that multiple point visits are contained within each well folder and all of the image files are listed within that well (not in separate subfolders per point visit). Image files have been automatically named according to CV1000 software image naming conventions, as follows:
             * Z:\CV1000\Experiment Folder Name\Well designation\W##F##T###Z##C#.tif
             * i.e. Z:\CV1000\20180809T122430\Well001\W1F001T0001Z01C1.tif.
-
-          * Output path:
+  * ![filestructure](https://user-images.githubusercontent.com/38474936/47886512-c49bb700-ddf7-11e8-8679-d09df3c1ec2c.jpg)
+  	  * Output path:
             * The output path specified in screenCrop.py is also generated based on information in the CSV file (highlighted in red below). Our saving regime uses our naming scheme (Emb#) for outer folders representing data for each embryo and this contains individual tifs that are named as follows:
             * Z:\cropped\Target\Strain\Emb#\Target_Emb#_Experiment Folder Name_W##F#_T##_Z##_C#.tif
             * i.e. Z:\cropped\EMBD0002\MS\Emb1\EMBD0002_Emb1_20140402T140154_W06F2_T01_Z01_C1
-
+  * ![filestructure_out](https://user-images.githubusercontent.com/38474936/47886524-d5e4c380-ddf7-11e8-9063-ed62afda694f.jpg)
 
   3. Cropping your images using **ScreenCrop.py**-- you will be able to crop all your images from a folder. The program crops each image by fitting an ellipse to each embryo at the fourth time point. 
       * Open PyCharm, or other IDE, load the embryo_crop repository and locate the program screenCrop.py. It is important to know the following Information and fill it in at the specified line:
@@ -176,7 +181,9 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
       * Once all the changes have been made to tailor the program for your data, you may begin cropping. This is done by selecting the green play icon in the toolbar, this will have a drop down menu where you select “Run As” and then “Python Run”. Alternatively, activate the environment and run from PyCharm terminal (described above at the end of the PyCharm section).
       * The Program will then begin cropping your images, this may take a few hours depending on the number of images that need to be processed. Once completed, a series of small windows containing embryo images will open; this will allow you to curate the cropped data before saving (i.e. delete embryos that are cut off, out of focus, or poorly cropped can be deleted). 
       * Good! 
-      * Bad!!  
+        * ![good](https://user-images.githubusercontent.com/38474936/47886532-e4cb7600-ddf7-11e8-8abf-df3087729a23.jpg)
+      * Bad!! 
+        * ![bad](https://user-images.githubusercontent.com/38474936/47886540-f3b22880-ddf7-11e8-81de-9ed1e902eed2.jpg)
       * For each image you have three options: 
         *  Save: If the image appears to be cropped properly with no areas of interest being cut off, press the space bar to save the image. 
         *  X: If the image appears to have areas of interest cut off and you still wish to save the image, press X and the image will be saved with an X in front of the name to separate it from the others. 
