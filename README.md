@@ -163,8 +163,8 @@ Both programs (embryoCropUI.py and screenCrop.py)use specific versions of Python
             * i.e. Z:\cropped\EMBD0002\MS\Emb1\EMBD0002_Emb1_20140402T140154_W06F2_T01_Z01_C1
   * ![filestructure_out](https://user-images.githubusercontent.com/38474936/47886524-d5e4c380-ddf7-11e8-9063-ed62afda694f.jpg)
 
-  3. Cropping your images using **ScreenCrop.py**-- you will be able to crop all your images from a folder. The program crops each image by fitting an ellipse to each embryo at the fourth time point. 
-      * Open PyCharm, or other IDE, load the embryo_crop repository and locate the program screenCrop.py. It is important to know the following Information and fill it in at the specified line:
+  3. Cropping your images using **ScreenCrop.py**-- you will be able to crop all your images from a folder. The program crops each image by fitting an ellipse to each embryo at the fourth time point. It is important to properly input all adjustable parameters.
+      * Open PyCharm, or other IDE, load the embryo_crop repository and locate the program screenCrop.py. You can edit the adjustable parameters without making changes to the source code by changing the configuration setting in the parameters.py file prior to running screenCrop.py, or you can directly edit the header code for screenCrop.py to customize settings for your setup. If you choose to edit the parameters file, change the **use_config** setting to **True** and input the values described below. If you chose to edit the source code directly, specify adjustable parameters in the lines noted below:
         * 	loadFolder (line 9): The drive on which the files are stored (e.g. Z:/ , D:// etc.)
         * 	date (line 7): this is the file referred to as Experiment Folder Name in the CSV 
         * 	trackingFile (line 11): the path to the CSV file in which experiment information is stored
