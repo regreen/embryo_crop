@@ -1,7 +1,7 @@
 ''' Define adjustable parameters within this file for screenCrop.py. Note that use_config must be changed to True
 for screenCrop.py to read these parameters.'''
 
-use_config= False # change this to True to run screenCrop using this parameter configuration file
+use_config = False # change this to True to run screenCrop using this parameter configuration file
 # (otherwise directly edit the header in screenCrop.py)
 
 date = '20180808T122436'  # unique identifier for experimental condition
